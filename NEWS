@@ -1,0 +1,5 @@
+mmpp 0.1 (2015-02-20)
+-----------------------
+FIRST DEVELOPMENTAL VERSION
+* This is the first developmental version to be made public. 
+* mmpp (metrics for marked point process) provides functions for calculating various similarity and distance metrics for marked point process.
