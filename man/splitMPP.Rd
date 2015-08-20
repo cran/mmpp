@@ -2,35 +2,40 @@
 % Please edit documentation in R/splitData.r
 \name{splitMPP}
 \alias{splitMPP}
-\title{Split MPP Data by a Fixed-length Window}
+\title{Split MPP Data by Sliding Time Window}
 \usage{
-splitMPP(mppdata, h = 60 * 60 * 48, Origin = TRUE, scaleMarks = FALSE,
-  scaleWindow = TRUE, original.tic = NULL)
+splitMPP(mppdata, h = 60 * 60 * 48, ol = NULL, TimeOrigin = TRUE,
+  scaleMarks = FALSE, scaleWindow = TRUE, MarkCenter = NULL,
+  MarkCenterID = NULL)
 }
 \arguments{
-\item{mppdata}{marked point process in data.frame composed of "time, mark1, mark2, ..."}
+\item{mppdata}{marked point process in data.frame composed of "time, mark1, mark2, ...".}
 
 \item{h}{width of the time window. Default is set to h=60*60*48, which is two days when $time is recorded in second. This is suitable for a special seismic data only.}
 
-\item{Origin}{Logical. If \code{TRUE}, the beginning of the window is assumed to be the origin of time. Default \code{TRUE}}
+\item{ol}{length of overlap for the sliding window. Default 0.}
 
-\item{scaleMarks}{Logical. If \code{TRUE}, marks (except time) are normalized to have unit variance in whole time series (not in individual windows). Default \code{FALSE}.}
+\item{TimeOrigin}{logical. If \code{TRUE}, the beginning of the window is assumed to be the origin of time. Default \code{TRUE}.}
 
-\item{scaleWindow}{Logical. If \code{TRUE}, time interval (window.length) is normalized to one.}
+\item{scaleMarks}{logical. If \code{TRUE}, marks (except time) are normalized to have unit variance in whole time series (not in individual windows). Default \code{FALSE}.}
 
-\item{original.tic}{vector of original time stamp for the input mppdata. If given, this function outputs a list of splitted MPP and a list of time stamps for elements of the splited mpp list.}
+\item{scaleWindow}{logical. If \code{TRUE}, time interval (window.length) is normalized to one.}
+
+\item{MarkCenter}{vector for specifying the center of the mark. Use when there are relative center point such as the main shock of the earthquake. Default \code{NULL}.}
+
+\item{MarkCenterID}{vector for specifying the elements of center of the mark.}
 }
 \description{
-This function splits point process instance into a list of splitted point process instances with length \code{h}.
+This function splits a point process realization into a list of splitted point process realizations with length \code{h}.
 }
 \details{
-\code{splitMPP} splits point process instance into a list of splitted point process instances with length \code{h}.
+\code{splitMPP} splits a point process realization into a list of splitted point process realizations with length \code{h}.
 }
 \examples{
 ##The aftershock data of 26th July 2003 earthquake of M6.2 at the northern Miyagi-Ken Japan.
 data(Miyagi20030626)
-##  no. longitude latitude magnitude     time  depth year month day
-## split events by 5-day
-sMiyagi <- splitMPP(Miyagi20030626,h=60*60*5,scaleMarks=TRUE,original.tic=Miyagi20030626[,1])
+## time longitude latitude depth magnitude
+## split events by 5-hours
+sMiyagi <- splitMPP(Miyagi20030626,h=60*60*5,scaleMarks=TRUE)
 }
 

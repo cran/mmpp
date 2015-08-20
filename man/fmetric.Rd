@@ -2,20 +2,21 @@
 % Please edit documentation in R/fmetric.r
 \name{fmetric}
 \alias{fmetric}
-\title{Compute Filter-based Metrics in the Functional Space Between Marked Point Processes}
+\title{Compute Filter-based Metrics in a Functional Space Between Marked Point Processes}
 \usage{
 fmetric(S1, S2, measure = "sim", h = "laplacian", tau = 1, M = NULL,
   abs.tol = .Machine$double.eps^0.25)
 }
 \arguments{
-\item{S1}{marked point process data}
+\item{S1}{marked point process data.}
 
-\item{S2}{marked point process data}
+\item{S2}{marked point process data.}
 
 \item{measure}{\code{"sim"} for similarity and \code{"dist"} for distance. Default \code{"sim"}.}
 
 \item{h}{filtering function. Default \code{"laplacian"} offers significant computational advantage. A function can be specified here like
-\code{h=function(x,tau) exp(-x^2/tau)}.}
+\code{h=function(x,tau) exp(-x^2/tau)}.
+The function should be square integrable and non-negative (not checked in the code).}
 
 \item{tau}{parameter for filtering function.}
 
@@ -24,19 +25,19 @@ fmetric(S1, S2, measure = "sim", h = "laplacian", tau = 1, M = NULL,
 \item{abs.tol}{absolute tolerance for numerical integration.}
 }
 \value{
-similarity or distance between two inputs (marked) point process S1 and S2.
+Similarity or distance between two inputs (marked) point process S1 and S2.
 }
 \description{
 The most commonly used and intensively studied metrics for spike trains, which is based on the continuation of event sequence to a real valued continuous function using a smoother function.
 }
 \details{
-\code{fmetric} computes filter-based measure between MPP instances. Discrete event timings are transformed into a continuous function by using a kernel smoother, and usual l2 inner product is adopted for defining the similarity between two point process instances.
+\code{fmetric} computes filter-based measure between MPP realizations. Discrete event timings are transformed into a continuous function by using a kernel smoother, and usual l2 inner product is adopted for defining the similarity between two point process realizations.
 }
 \examples{
 ##The aftershock data of 26th July 2003 earthquake of M6.2 at the northern Miyagi-Ken Japan.
 data(Miyagi20030626)
-##  no. longitude latitude magnitude  time  depth year month day
-## split events by 7-day
+## time longitude latitude depth magnitude
+## split events by 7-hour
 sMiyagi <- splitMPP(Miyagi20030626,h=60*60*7,scaleMarks=TRUE)$S
 N <- 10
 tau <- 0.1
@@ -58,8 +59,8 @@ image(sMat)
 Hideitsu Hino \email{hinohide@cs.tsukuba.ac.jp}, Ken Takano, Yuki Yoshikawa, and Noboru Murata
 }
 \references{
-M. C. W. van Rossum. 2001. A Novel Spike Distance. Neural Comput. 13, 4 (April 2001), 751-763.
+M. C. W. van Rossum. A Novel Spike Distance. Neural Computation, Vol. 13(4), pp. 751-763, 2001.
 
-S. Schreiber, J.M. Fellous, P.H. Tiesinga, T.J. Sejnowski, A new correlation-based measure of spike timing reliability, Neurocomputing 2003; 52-54:925--31
+S. Schreiber, J.M. Fellous, P.H. Tiesinga, and T.J. Sejnowski. A new correlation-based measure of spike timing reliability, Neurocomputing, Vols. 52-54, pp. 925-931, 2003.
 }
 

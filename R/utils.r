@@ -1,5 +1,4 @@
-## preprocessers and error handlers. Not for public use.
-
+## Not for public use.
 characterize <- function(S1,S2){
   if(is.null(ncol(S1))){  ## simple point process without marks
     n.mark <- 0
@@ -14,7 +13,5 @@ characterize <- function(S1,S2){
 }
 
 
-
 ## Heaviside step function
 hev<-function(t){ifelse(t>0,1,0)}
-

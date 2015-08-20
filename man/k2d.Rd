@@ -7,13 +7,13 @@
 k2d(Mat, direction = "k2d", method = "norm", scale = 1, pos = TRUE)
 }
 \arguments{
-\item{Mat}{matrix, either kernel matrix or distance matrix to be converted}
+\item{Mat}{matrix, either kernel matrix or distance matrix to be converted.}
 
 \item{direction}{a character string "k2d" or "d2k". The latter interpret the Mat as a distance matrix and convert it to a kernel matrix. Default "k2d".}
 
 \item{method}{a character string to specify how the matrix is converted. "Default "norm".}
 
-\item{scale}{a numeric parameter used to scale the matrix. Typically used in exp( - d(x,y)/scale)}
+\item{scale}{a numeric parameter used to scale the matrix. Typically used in exp( - d(x,y)/scale).}
 
 \item{pos}{logical. If \code{TRUE} when \code{direction="d2k"}, negative eigenvalues are round to zero to obtain positive semidefinite kernel matrix. Default \code{TRUE}.}
 }
@@ -34,12 +34,12 @@ which is an exponential-type distance (\code{method="exp"}), and
 d_n(x,y) = 1 - k(x,y)/sqrt{ k(x,x)k(y,y)},
 which we call naive (\code{method="naive"}).
 
-For coverting distance to kernel (\code{direction="d2k"}), it should be noted that we usually have distance between pairs of points only, and distances from "origin" are unknown.
+For converting distance to kernel (\code{direction="d2k"}), it should be noted that we usually have distance between pairs of points only, and distances from "origin" are unknown.
 Double-centering (\code{method="DC"}) is the most popular and simple way to convert distance to kernel. However, it does not make positive definite kernel in general,
 and it sometimes require post-processing, e.g., cutting off negative eigenvalues (\code{pos=TRUE}).
 Another simple way is exponential map (\code{method="exp"}), i.e., k(x,y) = exp( - d(x,y)/scale).
 }
 \author{
-Hideitsu Hino \email{hinohide@cs.tsukuba.ac.jp} Ken Takano Yuki Yoshikawa, and Noboru Murata
+Hideitsu Hino \email{hinohide@cs.tsukuba.ac.jp}, Ken Takano, Yuki Yoshikawa, and Noboru Murata
 }
 

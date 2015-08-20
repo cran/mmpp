@@ -1,26 +1,24 @@
 #' Compute Intensity Inner Product Metrics
 #'
 #'
-#' For the analysis of point process, intensity function plays a central roll. Paiva et al. (2009) proposed to use the intensity function for defining the inner product between SPP instances. 
+#' For the analysis of point process, intensity function plays a central roll. Paiva et al. (2009) proposed to use the intensity function for defining the inner product between point process realizations. 
 #'
 #'
-#' \code{iipmetric} computes intensity inner product metric. Intensity function for the point process instance is estimated by kernel density estimator. This function adopts Gaussian kernels for the sake of computational efficiency.
-#' @param S1 marked point process data
-#' @param S2 marked point process data
+#' \code{iipmetric} computes intensity inner product metric. Intensity function for the point process realization is estimated by kernel density estimator. This function adopts Gaussian kernels for the sake of computational efficiency.
+#' @param S1 marked point process data.
+#' @param S2 marked point process data.
 #' @param measure \code{"sim"} for similarity and \code{"dist"} for distance. Default \code{"sim"}.
-#' @param tau parameter for filtering function.
+#' @param tau a parameter for filtering function.
 #' @param M a precision matrix for filter of marks, i.e., exp( - r' M r) is used for filtering marks. It should be symmetric and positive semi-definite.
-#' @param abs.tol absolute tolerance for numerical integration.
-#' @return similarity or distance between two inputs (marked) point process S1 and S2.
+#' @return Similarity or distance between two inputs (marked) point process S1 and S2.
 #' @author Hideitsu Hino \email{hinohide@@cs.tsukuba.ac.jp}, Ken Takano, Yuki Yoshikawa, and Noboru Murata
-#' @references
-#' A. R. C. Paiva, Il Park, and Jose; C. Principe. 2009. A reproducing kernel Hilbert space framework for spike train signal processing. Neural Comput. 21, issue 2, pp. 424-449. 
+#' @references A.R.C. Paiva, I. Park, and J.C. Principe. A reproducing kernel Hilbert space framework for spike train signal processing, Neural Computation, Vol. 21(2), pp. 424-449, 2009.
 #' @export
 #' @examples
 #' ##The aftershock data of 26th July 2003 earthquake of M6.2 at the northern Miyagi-Ken Japan.
 #' data(Miyagi20030626)
-#' ##  no. longitude latitude magnitude     time  depth year month day
-#' ## split events by 7-day
+#' ## time longitude latitude depth magnitude 
+#' ## split events by 7-hour
 #' sMiyagi <- splitMPP(Miyagi20030626,h=60*60*7,scaleMarks=TRUE)$S
 #' N <- 10
 #' tau <- 0.1
@@ -37,7 +35,7 @@
 #'  tmpd <- diag(sMat) <- diag(sMat)/2
 #'  sMat <- sMat/sqrt(outer(tmpd,tmpd))
 #' image(sMat)
-iipmetric <- function(S1,S2,measure="sim",tau=1,M=NULL,abs.tol=.Machine$double.eps^0.25){
+iipmetric <- function(S1,S2,measure="sim",tau=1,M=NULL){
   ## extract information from S1 and S2
   ret <- characterize(S1,S2); T1 <- ret$T1;T2 <- ret$T2;N1 <- ret$N1;N2 <- ret$N2;n.mark <- ret$n.mark
   ## calculate similarity

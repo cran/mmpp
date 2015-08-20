@@ -5,12 +5,12 @@
 \title{Compute Inter Event Interval-based Metric Between Marked Point Processes}
 \usage{
 ieimetric(S1, S2, measure = "sim", M = NULL, window.length = NULL,
-  abs.tol = .Machine$double.eps^0.25)
+  variant = "spike", abs.tol = .Machine$double.eps^0.25)
 }
 \arguments{
-\item{S1}{marked point process data}
+\item{S1}{marked point process data.}
 
-\item{S2}{marked point process data}
+\item{S2}{marked point process data.}
 
 \item{measure}{\code{"sim"} for similarity and \code{"dist"} for distance. Default \code{"sim"}.}
 
@@ -19,22 +19,24 @@ ieimetric(S1, S2, measure = "sim", M = NULL, window.length = NULL,
 \item{window.length}{width of the window used for splitting the original MPP.\cr
 If not provided, \code{max(max(S1$time,S2$time) - min(S1$time,S2$time))} is used.}
 
+\item{variant}{choose from two variants "spike-weighted" or "time-weighted".\cr Default \code{"spike"}, which is computationally efficient than \code{"time"}. See the reference for details.}
+
 \item{abs.tol}{absolute tolerance for numerical integration.}
 }
 \value{
-similarity or distance between two inputs (marked) point process S1 and S2.
+Similarity or distance between two inputs (marked) point process S1 and S2.
 }
 \description{
 This metric considers inter event interval for point processes.
 }
 \details{
-\code{iei} computes inter event interval-based measure between MPP instances. iei for simple point process does not have any tuning parameter, which can be a desirable property for data analysis. However, it's computational cost is relatively higher than other metrics.
+\code{iei} computes inter event interval-based measure between MPP realizations. iei for simple point process does not have any tuning parameter, which can be a desirable property for data analysis. However, it's computational cost is relatively higher than other metrics.
 }
 \examples{
 ##The aftershock data of 26th July 2003 earthquake of M6.2 at the northern Miyagi-Ken Japan.
 data(Miyagi20030626)
-##  no. longitude latitude magnitude     time  depth year month day
-## split events by 7-day
+## time longitude latitude depth magnitude
+## split events by 7-hour
 sMiyagi <- splitMPP(Miyagi20030626,h=60*60*7,scaleMarks=TRUE)$S
 N <- 5
 sMat <- matrix(0,N,N)
@@ -55,6 +57,6 @@ image(sMat)
 Hideitsu Hino \email{hinohide@cs.tsukuba.ac.jp}, Ken Takano, Yuki Yoshikawa, and Noboru Murata
 }
 \references{
-Thomas Kreuz, Julie S. Haas, Alice Morelli, Henry D.I. Abarbanel and Antonio Politi, Measuring spike train synchrony, Journal of Neuroscience Methods, vol 165(1), 2007
+T. Kreuz, J.S. Haas, A. Morelli, H.D.I. Abarbanel, and A. Politi. Measuring spike train synchrony, Journal of Neuroscience Methods, Vol. 165(1), pp. 151-161, 2007.
 }
 

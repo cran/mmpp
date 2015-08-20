@@ -4,36 +4,33 @@
 \alias{iipmetric}
 \title{Compute Intensity Inner Product Metrics}
 \usage{
-iipmetric(S1, S2, measure = "sim", tau = 1, M = NULL,
-  abs.tol = .Machine$double.eps^0.25)
+iipmetric(S1, S2, measure = "sim", tau = 1, M = NULL)
 }
 \arguments{
-\item{S1}{marked point process data}
+\item{S1}{marked point process data.}
 
-\item{S2}{marked point process data}
+\item{S2}{marked point process data.}
 
 \item{measure}{\code{"sim"} for similarity and \code{"dist"} for distance. Default \code{"sim"}.}
 
-\item{tau}{parameter for filtering function.}
+\item{tau}{a parameter for filtering function.}
 
 \item{M}{a precision matrix for filter of marks, i.e., exp( - r' M r) is used for filtering marks. It should be symmetric and positive semi-definite.}
-
-\item{abs.tol}{absolute tolerance for numerical integration.}
 }
 \value{
-similarity or distance between two inputs (marked) point process S1 and S2.
+Similarity or distance between two inputs (marked) point process S1 and S2.
 }
 \description{
-For the analysis of point process, intensity function plays a central roll. Paiva et al. (2009) proposed to use the intensity function for defining the inner product between SPP instances.
+For the analysis of point process, intensity function plays a central roll. Paiva et al. (2009) proposed to use the intensity function for defining the inner product between point process realizations.
 }
 \details{
-\code{iipmetric} computes intensity inner product metric. Intensity function for the point process instance is estimated by kernel density estimator. This function adopts Gaussian kernels for the sake of computational efficiency.
+\code{iipmetric} computes intensity inner product metric. Intensity function for the point process realization is estimated by kernel density estimator. This function adopts Gaussian kernels for the sake of computational efficiency.
 }
 \examples{
 ##The aftershock data of 26th July 2003 earthquake of M6.2 at the northern Miyagi-Ken Japan.
 data(Miyagi20030626)
-##  no. longitude latitude magnitude     time  depth year month day
-## split events by 7-day
+## time longitude latitude depth magnitude
+## split events by 7-hour
 sMiyagi <- splitMPP(Miyagi20030626,h=60*60*7,scaleMarks=TRUE)$S
 N <- 10
 tau <- 0.1
@@ -55,6 +52,6 @@ image(sMat)
 Hideitsu Hino \email{hinohide@cs.tsukuba.ac.jp}, Ken Takano, Yuki Yoshikawa, and Noboru Murata
 }
 \references{
-A. R. C. Paiva, Il Park, and Jose; C. Principe. 2009. A reproducing kernel Hilbert space framework for spike train signal processing. Neural Comput. 21, issue 2, pp. 424-449.
+A.R.C. Paiva, I. Park, and J.C. Principe. A reproducing kernel Hilbert space framework for spike train signal processing, Neural Computation, Vol. 21(2), pp. 424-449, 2009.
 }
 

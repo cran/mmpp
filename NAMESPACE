@@ -6,3 +6,6 @@ export(ieimetric)
 export(iipmetric)
 export(k2d)
 export(splitMPP)
+
+importFrom("stats", "integrate", "mahalanobis", "na.exclude", "var")
+importFrom("utils", "combn")

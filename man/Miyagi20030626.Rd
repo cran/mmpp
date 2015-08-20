@@ -3,8 +3,8 @@
 \docType{data}
 \name{Miyagi20030626}
 \alias{Miyagi20030626}
-\title{The aftershock data of 26th July 2003 earthquake of M6.2 at the northern Miyagi-Ken Japan.}
-\format{A data object with 2305 seismic events}
+\title{The aftershock data of 26th July 2003 earthquake of M6.2 at the northern Miyagi-Ken Japan}
+\format{A data object with 2305 seismic events.}
 \source{
 \code{SAPP} R package available at \url{http://cran.r-project.org}
 }
@@ -12,17 +12,17 @@
 data(Miyagi20030626)
 }
 \description{
-A data frame is a reparameterization of the \code{main2006JUL26} data frame from the \code{SAPP} package
+A reparameterization of the \code{main2006JUL26} data frame from the \code{SAPP} package.
 }
 \details{
 The variables are as follows:
 
 \itemize{
-  \item time. time in seconds from the main shock
-  \item longitude. longitude of the seismic center
-  \item latitude. latitude of the seismic center
-  \item depth. depth of the seismic center
-  \item magnitude. magnitude of the earthquake
+  \item time. time in seconds from the main shock.
+  \item longitude. longitude of the seismic center.
+  \item latitude. latitude of the seismic center.
+  \item depth. depth of the seismic center.
+  \item magnitude. magnitude of the earthquake.
 }
 }
 \keyword{datasets}
