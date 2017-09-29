@@ -75,10 +75,13 @@ k2d <- function(Mat, direction="k2d",method="norm", scale=1, pos=TRUE){
     myD[which(is.na(myD))] <- max(myD,na.rm=TRUE)
     return(myD)
   }else{  ## distance to kernel
+    num <- nrow(Mat)
+    index <- 1:num
+    comb.index <- combn(index,2)
     if(method=="DC"){
-      num <- nrow(Mat)
-      index <- 1:num
-      comb.index <- combn(index,2)
+##      num <- nrow(Mat)
+##      index <- 1:num
+##      comb.index <- combn(index,2)
       myK <- Mat-Mat
       apply(comb.index,2,FUN=function(x){
             myK[x[1],x[2]]<<-myK[x[2],x[1]]<<- (-Mat[x[1],x[2]]+sum(Mat[,x[2]])/num+sum(Mat[,x[1]])/num - sum(Mat)/(num^2))/2

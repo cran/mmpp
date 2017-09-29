@@ -11,8 +11,7 @@
 #' @param S2 marked point process data.
 #' @param measure \code{"sim"} for similarity and \code{"dist"} for distance. Default \code{"sim"}.
 #' @param h filtering function. Default \code{"laplacian"} offers significant computational advantage. A function can be specified here like
-#' \code{h=function(x,tau) exp(-x^2/tau)}.
-#' The function should be square integrable and non-negative (not checked in the code).
+#' \code{h=function(x,tau) exp(-x^2/tau)}. \cr The function should be square integrable and non-negative (not checked in the code).
 #' @param tau parameter for filtering function.
 #' @param M a precision matrix for filter of marks, i.e., exp( - r' M r) is used for filtering marks. It should be symmetric and positive semi-definite.
 #' @param abs.tol absolute tolerance for numerical integration.

@@ -6,7 +6,7 @@
 \title{The aftershock data of 26th July 2003 earthquake of M6.2 at the northern Miyagi-Ken Japan}
 \format{A data object with 2305 seismic events.}
 \source{
-\code{SAPP} R package available at \url{http://cran.r-project.org}
+\code{SAPP} R package available at \url{https://cran.r-project.org}
 }
 \usage{
 data(Miyagi20030626)
